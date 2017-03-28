@@ -734,5 +734,18 @@ function debug_to_console( $data ) {
     echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
 }
 
+// goto login if user is not logged in
+add_action( 'template_redirect', function() {
+
+    if( ( !is_page('user-login')) && ( !is_page('player-registration'))  && ( !is_page('parent-registration'))&& ( !is_page('coach-registration')) && ( !is_page('recover-password')) && ( !is_page('team-manager-registration'))) {
+
+        if (!is_user_logged_in() ) {
+            wp_redirect( site_url( '/user-login' ) );        // redirect all...
+            exit();
+        }
+
+    }
+
+});
 
 
